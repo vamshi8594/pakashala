@@ -25,20 +25,14 @@ public class GetDataUser {
 			         }
 			         if(l.getPassword().equals(password)) {
 			        	 return l;
-			         }
-			          
-			        
-			           
+			         } 
 			         l.setUname("failed");
 			         l.setPassword("failed");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		      finally {
-		            try {  stmt.close(); } catch (SQLException e) {}
-		         }
+			} 
 		     
-			return null;
+			return l;
 		}
 }

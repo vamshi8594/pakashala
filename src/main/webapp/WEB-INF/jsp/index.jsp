@@ -32,7 +32,7 @@ padding-top:15px;
 
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.jsp">Pakashala</a>
+  <a class="navbar-brand" href="/home">Pakashala</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -50,7 +50,7 @@ padding-top:15px;
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/loginreg">
-        <c:choose>
+ <c:choose>
   <c:when test="${message eq 'failed'}">
     login/Register
   </c:when> 
@@ -71,6 +71,14 @@ padding-top:15px;
   </div>
   
 </nav> 
+ <c:choose>
+  <c:when test="${message eq 'failed'}">
+     
+  </c:when> 
+  <c:otherwise>
+  <a  href="/logout">Logout</a>
+  </c:otherwise>
+</c:choose>
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-4">

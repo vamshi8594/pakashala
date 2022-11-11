@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -83,6 +84,11 @@ span.psw {
      width: 100%;
   }
 }
+
+.invaliderror{
+color:red;
+text-align:center;
+}
 </style>
 <body>
 
@@ -93,7 +99,7 @@ span.psw {
 
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="index.jsp">Pakashala</a>
+  <a class="navbar-brand" href="/home">Pakashala</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -120,9 +126,15 @@ span.psw {
     </form> 
   </div>
   
-</nav>
-
-  
+</nav> 
+   <c:choose>
+  <c:when test="${message ne 'failed'}">
+    
+  </c:when> 
+  <c:otherwise> 
+  <p class='invaliderror'>invalid username/password! please try again<p>
+  </c:otherwise>
+</c:choose>
 <div class="container "> 
 
 <form:form method="POST" action="/login" modelAttribute="user">
@@ -138,7 +150,7 @@ span.psw {
     <input type="password" placeholder="Enter Password" name="password" required>
         
     <button class="form_submit" type="submit">Login</button>
-    
+    <button class="form_submit" type="button">Register</button>
      <span class="psw">Forgot <a href="#">password?</a></span>
   </div> 
 </form:form>
