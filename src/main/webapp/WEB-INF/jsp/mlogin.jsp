@@ -149,53 +149,16 @@ margin: 8px 0;
   <a class="navbar-brand" href="/home">Pakashala</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="/home">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/plans">Plans</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">login/Register <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> 
-  </div>
+  </button> 
   
-</nav> 
-   <c:choose>
-  <c:when test="${message ne 'failed'}">
-  <p class='invaliderror'>${message}<p>
-<%--       <c:choose> --%>
-<%--   <c:when test="${message eq 'user already exists'}"> --%>
-<!--     <p class='invaliderror'>user already exists<p> -->
-<!-- <!--     <script type="text/javascript">  -->
-<!--      registerview(); -->
-<!--      </script>  -->
-<%--   </c:when>   --%>
-<%--   <c:when test="${message eq 'successfully registered! login with new user'}"> --%>
-<!--     <p class='invaliderror'>successfully registered! login with new user<p> -->
-<%--   </c:when>  --%>
-<%-- </c:choose> --%>
-  </c:when> 
-  <c:otherwise> 
-  <p class='invaliderror'>invalid username/password! please try again<p>
-  </c:otherwise>
-</c:choose>
+</nav>  
 <div class="container "> 
-
-<form:form id='login' method="POST" action="/login" modelAttribute="user">
+<c:choose>
+  <c:when test="${message eq 'failed'}">
+    <p class='invaliderror'>Invalid Username/password<p> 
+  </c:when>   
+</c:choose>
+<form:form id='login' method="POST" action="/manage" modelAttribute="user">
   <div class="imgcontainer">
     <img src="img/stove.png" alt="Avatar" class="avatar">
   </div>
@@ -207,43 +170,10 @@ margin: 8px 0;
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
         
-    <button class="form_submit" type="submit">Login</button>
-    <button class="form_submit" onclick='registerview()' type="button">Register</button>
-     <span class="psw">Forgot <a href="#">password?</a></span>
+    <button class="form_submit" type="submit">Login</button>  
   </div> 
-</form:form>
-
-<form:form id='register' method="POST" action="/register" modelAttribute="ruserdetail"> 
-  <div class="container">
-  <label><a  href="#" onclick="gotoLogin();return false;">Back</a></label><br>
-   <label for="fname"><b>First Name</b></label>
-    <input type="text" placeholder="Enter First Name" name="fname" required>
-
-    <label for="lname"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lname" required>
-    
-    <label for="gender"><b>Gender</b></label> <br>
-    <select id='selectgen' name="gender" required >
-	    <option value="na" >Prefer not to say</option>
-	  	<option value="male">Male</option>
-	  	<option value="female">Female</option>
-	  	<option value="other" >Other</option> 
-	</select>
-    <br>  
-    <label for="phone"><b>Phone</b></label>
-    <input type="text" placeholder="Enter phone number" name="pnum" required>
-     
-    <label for="uname"><b>Username/Email</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required> 
-        
-    <button class="form_submit" type="submit">Register</button> 
-  </div> 
-</form:form>
+</form:form> 
 </div>
-
 
 <div class="container-fluid p-5 bg-primary text-white text-center">
   <div class="row">

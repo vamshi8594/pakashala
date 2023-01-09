@@ -1,21 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<%@page import="com.vamshi.pakashala.service.GetItems"%>
-<%@page import="com.vamshi.pakashala.entity.ItemDetails"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PakaShala</title>
+  <title>About Us</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
 .footer{
@@ -23,21 +19,15 @@ color:white;
 font-size: larger;
 padding: inherit;
 }
+ul{
+list-style: none;
+}
 img{
 width:100%;
 height:100%;
 }
-.container{
-padding-bottom:30px;
-}
 #username{
  padding: 5px;
-}
-ul{
-list-style: none;
-}
-.col-sm-4{
-padding-top:15px;
 }
 
 .img_container {
@@ -99,12 +89,6 @@ padding-top:15px;
 .header-content {
   font-size: calc(16px + 1vw);
 }
-/* .text { */
-/*   background-color: #04AA6D; */
-/*   color: white; */
-/*   font-size: 16px; */
-/*   padding: 16px 32px; */
-/* } */
 </style>
 <body>
 
@@ -112,7 +96,6 @@ padding-top:15px;
   <h1 class="header-title">Pakashala</h1>
   <p class="header-content">Feels like Meals from your own Kitchen</p> 
 </div>
-
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="/home">Pakashala</a>
@@ -122,18 +105,16 @@ padding-top:15px;
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Home </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
+        <a class="nav-link" href="#">About Us </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/plans">Plans</a>
+        <a class="nav-link" href="/plans">Plans </a>
       </li>
-      
-       
- <c:choose>
+       <c:choose>
   <c:when test="${message eq 'failed'}">
   <li class="nav-item">
      <a class="nav-link" href="/loginreg">login/Register</a>
@@ -148,57 +129,53 @@ padding-top:15px;
          <ul class="dropdown-menu">  
       			<li> <a  class="nav-link" href="/logout">Logout</a></li> 
     	</ul>
-   </li> 
+      </li>
+   
   </c:otherwise>
-</c:choose> 
+</c:choose>
     </ul>
-    
     <c:choose>
   <c:when test="${message ne 'failed'}">
   <ul class="navbar-nav ">
       <li class="nav-item dropdown">
       <a  class="nav-link btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Cart
-      
       <c:if test="${not empty cartcount}">
       		<c:if test="${cartcount gt 0}">
       			(<c:out value="${cartcount}"/>)
       			</c:if> 
       			</c:if>
-      
       <span class="caret"></span></a>
       <ul class="dropdown-menu">  
       			<c:if test="${empty cartit}">
-      			<li> <Label class="nav-link">No items in Cart</Label></li> 
+      				<li> <Label class="nav-link">No items in Cart</Label></li> 
       			</c:if>
       			<c:if test="${not empty cartit}"> 
-      			<c:forEach var="it" items="${cartit}">
-      				<li class="nav-item"> <label class="nav-link"><c:out value="${it.key.name}"/>(<c:out value="${it.value}"/>)</label></li>  
-				</c:forEach>
-				<li class="nav-item justify-content-between">
-				<form action="/clearcart" id='cartclear'> 
-				<input type="hidden" name="dirpage" value='index'>
-				<input type="hidden" name="itemid" value='${sitem.itemid}'>
-				<a class="nav-link" href="#" onclick="document.getElementById('cartclear').submit();" >Clear</a>
-				<a class="nav-link" href="/checkout">CheckOut</a></form> </li> 
+	      			<c:forEach var="it" items="${cartit}">
+	      				<li class="nav-item"> <label class="nav-link"><c:out value="${it.key.name}"/>(<c:out value="${it.value}"/>)</label></li>  
+					</c:forEach>
+					<li class="nav-item justify-content-between">
+					<form action="/clearcart" id='cartclear'> 
+					<input type="hidden" name="dirpage" value='viewItem'>
+					<input type="hidden" name="itemid" value='${sitem.itemid}'>
+					<a class="nav-link" href="#" onclick="document.getElementById('cartclear').submit();" >Clear</a>
+					<a class="nav-link" href="/checkout">CheckOut</a></form> </li> 
 				</c:if>
 				
     	</ul>
       </li></ul>
   </c:when>
   </c:choose>
-    
-    <form class="form-inline my-2 my-lg-0" action='/search' method="POST">
+   <form class="form-inline my-2 my-lg-0" action='/search' method="POST">
       <input class="form-control mr-sm-2" type="search"  name='search' placeholder="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> 
-    
+    </form>  
   </div>
   
-</nav>  
-
+</nav>
+<h1>Search Result for: <c:out value="${searchstr}"/></h1>
 <div class="container mt-5">
-  <div class="row">
-  <c:forEach items="${items}" var="item">
+<c:forEach items="${sres}" var="item">
+  <div class="row"> 
     <div class="col-sm-4 img_container">
     <a href="#">
     	<form method="POST" style="background:black;"  id="<c:out value="${item.itemid}"/>"  onclick="formsubmit(this)" action="/viewItem" modelAttribute="viewItem">
@@ -212,12 +189,13 @@ padding-top:15px;
 	  	</div>
       </form>
       </a>
-    </div> 
-    </c:forEach>
+    </div>  
   </div> 
+  </c:forEach>
 </div>
 
-<div class="container-fluid p-5 bg-primary text-white text-center" style="background-color:#89939d! important;">
+
+<div class="container-fluid p-5 bg-primary text-white text-center">
   <div class="row">
   <div class="col-sm-4" style="text-align: center;">
   	<h3>Links</h3>
@@ -270,8 +248,6 @@ padding-top:15px;
 <script type="text/javascript">
 function formsubmit(fid){ 
 	fid.submit();
-}
-
+} 
 </script>
-
 </html>

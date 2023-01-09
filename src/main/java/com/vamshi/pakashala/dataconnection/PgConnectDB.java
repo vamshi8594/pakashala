@@ -24,6 +24,5 @@ public class PgConnectDB {
 	         System.exit(0);
 	      } 
 	      return c;
-	   }
-	 
+	   } 
 }
